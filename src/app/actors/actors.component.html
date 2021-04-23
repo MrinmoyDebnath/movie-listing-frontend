@@ -1,0 +1,21 @@
+<div class="max-w-screen-xl" style="margin: auto;">
+    <div class="flex px-12 pt-1">
+        <div class="flex flex-col align-center justify-center text-white w-full my-4 p-4 rounded-lg bg-gray-900 hover:bg-gray-800">
+            <button (click)="newActor()">Add new actor</button>
+        </div>
+    </div>
+    <div *ngFor="let actor of actors" class="flex px-12 pt-1">
+        <div class="flex flex-col align-center justify-center text-white w-full my-4 p-4 rounded-lg" style="background-color: rgb(39, 37, 37);">
+            <div class="actor-card">
+                <h1 (click)="gotoActor(actor.name)" class="text-3xl">{{actor.name}}</h1>
+                
+                <div class="p-4 w-full rounded-lg" style="background-color: #121212;">
+                    <h2>Date of Birth: {{actor.dob | date}}</h2>
+                    <h2>{{actor.sex}}</h2>
+                    <h2>Bio:</h2> <br>
+                    <h4>{{actor.bio}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
