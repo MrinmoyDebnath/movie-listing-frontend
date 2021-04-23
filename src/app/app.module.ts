@@ -11,7 +11,6 @@ import { MoviesComponent } from './movies/movies.component';
 import { ProducersComponent } from './producers/producers.component';
 import { ActorsComponent } from './actors/actors.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from "@angular/material/dialog";
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
@@ -31,7 +30,6 @@ const material = [
     ProducersComponent,
     ActorsComponent,
     HomepageComponent,
-    PageNotFoundComponent,
     EditDialogComponent,
     NewActorComponent,
     NewMovieComponent,
