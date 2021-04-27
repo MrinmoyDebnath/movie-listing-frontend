@@ -14,10 +14,8 @@ export class EditDialogComponent implements OnInit {
 
   ngOnInit(): void {}
   sendData(data: any){
-    console.log(data)
 
     const path:any = this.route.snapshot.paramMap;
-    console.log(path)
     const movie = {
       id: path.params.movie || null,
       name: data.movie  || null,

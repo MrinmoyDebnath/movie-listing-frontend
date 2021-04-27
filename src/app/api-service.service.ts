@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -7,56 +7,70 @@ import { HttpClient } from "@angular/common/http";
 export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
+  apiUrl = 'http://localhost:3000';
+  
+  getToken():string{
+    return localStorage.getItem('token') || '';
+  }
+
+  header = new HttpHeaders({
+    'Content-Type':'application/json; charset=utf-8',
+    'authorization': this.getToken()  
+  })
   getMovies(page: any, limit: any){
-    const url = `http://localhost:3000/movies?page=${page}&limit=${limit}`;
+    const url = `${this.apiUrl}/movies?page=${page}&limit=${limit}`;
     return this.http.get(url);
   }
   getMovieByName(name: any){
-    const url = `http://localhost:3000/movies/${name}`;
+    const url = `${this.apiUrl}/movies/${name}`;
     return this.http.get(url);
   }
   getMoviesOfActor(name: any, page: any, limit: any){
-    const url = `http://localhost:3000/movies/actor/${name}?page=${page}&limit=${limit}`;
+    const url = `${this.apiUrl}/movies/actor/${name}?page=${page}&limit=${limit}`;
     return this.http.get(url);
   }
   getMoviesOfProducer(name: any, page: any, limit: any){
-    const url = `http://localhost:3000/movies/producer/${name}?page=${page}&limit=${limit}`;
+    const url = `${this.apiUrl}/movies/producer/${name}?page=${page}&limit=${limit}`;
     return this.http.get(url);
   }
   getActorByName(name: any){
-    const url = `http://localhost:3000/actors/${name}`;
+    const url = `${this.apiUrl}/actors/${name}`;
     return this.http.get(url);  
   }
   getActors(page: any, limit: any){
-    const url = `http://localhost:3000/actors?page=${page}&limit=${limit}`;
+    const url = `${this.apiUrl}/actors?page=${page}&limit=${limit}`;
     return this.http.get(url);
   }
   getProducerByName(name: any){
-    const url = `http://localhost:3000/producers/${name}`;
+    const url = `${this.apiUrl}/producers/${name}`;
     return this.http.get(url);
   }
   getProducers(page: any, limit: any){
-    const url = `http://localhost:3000/producers?page=${page}&limit=${limit}`;
+    const url = `${this.apiUrl}/producers?page=${page}&limit=${limit}`;
     return this.http.get(url);
   }
   editMovie(data: any){
-    const url = `http://localhost:3000/movies`;
-    console.log(data)
-    return this.http.put(url, data);
+    const url = `${this.apiUrl}/movies`;
+    return this.http.put(url, data, {headers: this.header});
   }
   createActor(data: any){
-    const url = `http://localhost:3000/actors`;
-    console.log(data)
-    return this.http.post(url, data);
+    const url = `${this.apiUrl}/actors`;
+    return this.http.post(url, data, {headers: this.header});
   }
   createMovie(data: any){
-    const url = `http://localhost:3000/movies`;
-    console.log(data)
-    return this.http.post(url, data);
+    const url = `${this.apiUrl}/movies`;
+    return this.http.post(url, data, {headers: this.header});
   }
   createProducer(data: any){
-    const url = `http://localhost:3000/producers`;
-    console.log(data)
-    return this.http.post(url, data);
+    const url = `${this.apiUrl}/producers`;
+    return this.http.post(url, data, {headers: this.header});
+  }
+  createAccount(data: any){
+    const url = `${this.apiUrl}/user/signup`;
+    return this.http.post(url, data, {headers: this.header});
+  }
+  loginAccount(data: any){
+    const url = `${this.apiUrl}/user/login`;
+    return this.http.post(url, data, {headers: this.header});
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 import { ApiServiceService } from "../api-service.service";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-new-actor',
@@ -10,14 +11,12 @@ import { ApiServiceService } from "../api-service.service";
 })
 export class NewActorComponent implements OnInit {
 
-  constructor(private api: ApiServiceService, private route: ActivatedRoute,  private router: Router) { }
+  constructor(private api: ApiServiceService, private route: ActivatedRoute,  private router: Router, private location: Location) { }
 
   ngOnInit(): void {}
   sendData(data: any){
-    console.log(data)
-
+    
     const path:any = this.route.snapshot.paramMap;
-    console.log(path)
     const actor = {
       name: data.name  || null,
       sex: data.sex || null,
@@ -25,10 +24,10 @@ export class NewActorComponent implements OnInit {
       bio: data.bio  || null
     }
     this.api.createActor(actor).subscribe(data=>{
-      this.router.navigate([".."]);
+      this.location.back();
     })
   }
   cancel(){
-    this.router.navigate([".."]);
+    this.location.back();
   }
 }

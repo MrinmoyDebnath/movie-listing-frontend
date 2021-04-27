@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-new-movie',
@@ -9,13 +10,11 @@ import { ApiServiceService } from '../api-service.service';
 })
 export class NewMovieComponent implements OnInit {
 
-  constructor(private api: ApiServiceService, private route: ActivatedRoute,  private router: Router) { }
+  constructor(private api: ApiServiceService, private route: ActivatedRoute,  private router: Router, private location: Location) { }
   ngOnInit(): void {}
   sendData(data: any){
-    console.log(data)
-
+    
     const path:any = this.route.snapshot.paramMap;
-    console.log(path)
     const movie = {
       name: data.movie  || null,
       plot: data.plot  || null,
@@ -24,12 +23,11 @@ export class NewMovieComponent implements OnInit {
       actors: data.actors.split(',')[0]!==''? data.actors.split(',') : null 
     }
     this.api.createMovie(movie).subscribe(data=>{
-      console.log(data)
-      this.router.navigate([".."]);
+      this.location.back();
     })
   }
   cancel(){
-    this.router.navigate([".."]);
+    this.location.back();
   }
 
 }

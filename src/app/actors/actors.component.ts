@@ -13,12 +13,10 @@ export class ActorsComponent implements OnInit {
   constructor(private api: ApiServiceService, private router: Router, private route: ActivatedRoute) {
     const path:any = this.route.snapshot.paramMap;
     if(path.params.name){
-      console.log(path.params.name)
       const name = path.params.name
       this.api.getActorByName(name).subscribe(data=>{
         const result: any = data;
         this.actors = result.results;
-        console.log(data)
       })
     }
     else{

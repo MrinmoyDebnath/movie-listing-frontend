@@ -21,7 +21,6 @@ export class MoviesComponent implements OnInit {
     if(path.params.id){
       const type = path.params.id.split('/')[0]
       const name = path.params.id.split('/')[1]
-      console.log(type, name)
       if(type==='actor'){
         this.api.getMoviesOfActor(name, 1, 10).subscribe(data=>{
           const result:any = data;
@@ -34,7 +33,6 @@ export class MoviesComponent implements OnInit {
         })
       }else{
         this.api.getMovieByName(type).subscribe(data=>{
-          console.log(data)
           const result:any = data;
           this.movies = result.results;
         })

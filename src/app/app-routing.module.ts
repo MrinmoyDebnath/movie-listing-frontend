@@ -8,11 +8,16 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { NewActorComponent } from './new-actor/new-actor.component';
 import { NewMovieComponent } from './new-movie/new-movie.component';
 import { NewProducerComponent } from './new-producer/new-producer.component';
+import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomepageComponent
+  },
+  {
+    path: 'signin',
+    component: SigninComponent
   },
   {
     path: 'movies',
