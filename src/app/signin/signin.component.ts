@@ -26,7 +26,7 @@ export class SigninComponent implements OnInit {
     })
   }
   saveToken(token: string){
-    localStorage.setItem('token', `Bearer ${token}`);
+    localStorage.setItem('token', token);
   }
   login(data: any){
     const user = {
