@@ -13,10 +13,10 @@ export class ApiServiceService {
     return localStorage.getItem('token') || '';
   }
 
-  header = new HttpHeaders({
-    'Content-Type':'application/json; charset=utf-8',
-    'authorization': this.getToken()  
-  })
+  // header = new HttpHeaders({
+  //   'Content-Type':'application/json; charset=utf-8',
+  //   'authorization': this.getToken()  
+  // })
   getMovies(page: any, limit: any){
     const url = `${this.apiUrl}/movies?page=${page}&limit=${limit}`;
     return this.http.get(url);
@@ -51,26 +51,26 @@ export class ApiServiceService {
   }
   editMovie(data: any){
     const url = `${this.apiUrl}/movies`;
-    return this.http.put(url, data, {headers: this.header});
+    return this.http.put(url, data);
   }
   createActor(data: any){
     const url = `${this.apiUrl}/actors`;
-    return this.http.post(url, data, {headers: this.header});
+    return this.http.post(url, data);
   }
   createMovie(data: any){
     const url = `${this.apiUrl}/movies`;
-    return this.http.post(url, data, {headers: this.header});
+    return this.http.post(url, data);
   }
   createProducer(data: any){
     const url = `${this.apiUrl}/producers`;
-    return this.http.post(url, data, {headers: this.header});
+    return this.http.post(url, data);
   }
   createAccount(data: any){
     const url = `${this.apiUrl}/user/signup`;
-    return this.http.post(url, data, {headers: this.header});
+    return this.http.post(url, data);
   }
   loginAccount(data: any){
     const url = `${this.apiUrl}/user/login`;
-    return this.http.post(url, data, {headers: this.header});
+    return this.http.post(url, data);
   }
 }
