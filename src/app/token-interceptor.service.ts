@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpHandler, HttpInterceptor } from "@angular/common/http";
 
 @Injectable({
@@ -6,7 +6,7 @@ import { HttpHandler, HttpInterceptor } from "@angular/common/http";
 })
 export class TokenInterceptorService implements HttpInterceptor{
 
-  constructor(private injector: Injector) { }
+  constructor() { }
   getToken(){
     return localStorage.getItem('token');
   }
