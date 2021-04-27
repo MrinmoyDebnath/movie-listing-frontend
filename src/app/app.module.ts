@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { NewActorComponent } from './new-actor/new-actor.component';
 import { NewMovieComponent } from './new-movie/new-movie.component';
 import { NewProducerComponent } from './new-producer/new-producer.component';
 import { SigninComponent } from './signin/signin.component';
+import { TokenInterceptorService } from './token-interceptor.service'
 
 const material = [
   MatDialogModule
@@ -48,7 +49,11 @@ const material = [
   entryComponents:[
     EditDialogComponent
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
