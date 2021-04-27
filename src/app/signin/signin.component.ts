@@ -21,7 +21,9 @@ export class SigninComponent implements OnInit {
       email: data.email || null,
       password: data.password  || null
     }
-    this.api.createAccount(user)
+    this.api.createAccount(user).subscribe(data=>{
+      console.log(data)
+    })
   }
   saveToken(token: string){
     localStorage.setItem('token', `Bearer ${token}`);

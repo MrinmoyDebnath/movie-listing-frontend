@@ -7,7 +7,7 @@
                     <form class="flex flex-col justify-center text-black" #createUser="ngForm" (ngSubmit)="createAccount(createUser.value)">
                         <input ngModel name="name" placeholder="User Name" class="p-2 mt-2 rounded" type="text">
                         <input ngModel name="email" placeholder="Email" class="p-2 mt-4 rounded" type="email">
-                        <input ngModel name="password" placeholder="Password"  class="p-2 mt-4 rounded" type="text">
+                        <input ngModel name="password" placeholder="Password"  class="p-2 mt-4 rounded" type="password">
                         <button class="p-2 bg-gray-800 rounded shadow text-white mt-6">Sign Up</button>
                     </form>
                     <button (click)="cancel()" class="p-2 bg-gray-800 rounded shadow mt-6">Cancel</button>
