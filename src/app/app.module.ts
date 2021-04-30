@@ -18,7 +18,8 @@ import { NewActorComponent } from './new-actor/new-actor.component';
 import { NewMovieComponent } from './new-movie/new-movie.component';
 import { NewProducerComponent } from './new-producer/new-producer.component';
 import { SigninComponent } from './signin/signin.component';
-import { TokenInterceptorService } from './token-interceptor.service'
+import { TokenInterceptorService } from './token-interceptor.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 const material = [
   MatDialogModule
@@ -36,7 +37,8 @@ const material = [
     NewActorComponent,
     NewMovieComponent,
     NewProducerComponent,
-    SigninComponent
+    SigninComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
