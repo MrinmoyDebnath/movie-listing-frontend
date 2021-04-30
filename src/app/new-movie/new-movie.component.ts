@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 import { Location } from '@angular/common';
 
@@ -10,20 +9,20 @@ import { Location } from '@angular/common';
 })
 export class NewMovieComponent implements OnInit {
 
-  constructor(private api: ApiServiceService, private route: ActivatedRoute,  private router: Router, private location: Location) { }
+  constructor(private api: ApiServiceService, private location: Location) { }
   ngOnInit(): void {}
   sendData(data: any){
-    
-    const path:any = this.route.snapshot.paramMap;
     const movie = {
-      name: data.movie  || null,
-      plot: data.plot  || null,
-      poster: data.poster  || null,
-      producer: data.producer || null,
-      actors: data.actors.split(',')[0]!==''? data.actors.split(',') : null 
+      name: btoa(data.movie)  || null,
+      plot: btoa(data.plot)  || null,
+      poster: btoa(data.poster)  || null,
+      producer: btoa(data.producer) || null,
+      actors: data.actors.split(',')[0]!==''? data.actors.split(',').map((actor:string)=>btoa(actor)) : null 
     }
     this.api.createMovie(movie).subscribe(data=>{
       this.location.back();
+    }, (error)=>{
+      alert(error)
     })
   }
   cancel(){

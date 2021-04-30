@@ -16,12 +16,16 @@ export class ProducersComponent implements OnInit {
       this.api.getProducerByName(name).subscribe(data=>{
         const result: any = data;
         this.producers = result.results;
+      }, (error)=>{
+        alert(error.error)
       })
     }
     else{
       this.api.getProducers(1,10).subscribe(data=>{
         const result: any = data;
         this.producers = result.results;
+      }, (error)=>{
+        alert(error.error)
       })
     }
    }

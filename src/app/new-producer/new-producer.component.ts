@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 import { Location } from '@angular/common';
 
@@ -10,19 +9,19 @@ import { Location } from '@angular/common';
 })
 export class NewProducerComponent implements OnInit {
 
-  constructor(private api: ApiServiceService, private route: ActivatedRoute,  private router: Router, private location: Location) { }
+  constructor(private api: ApiServiceService, private location: Location) { }
   ngOnInit(): void {}
   sendData(data: any){
-    
-    const path:any = this.route.snapshot.paramMap;
     const producer = {
-      name: data.name  || null,
-      sex: data.sex || null,
-      dob: data.dob  || null,
-      bio: data.bio  || null
+      name: btoa(data.name)  || null,
+      sex: btoa(data.sex) || null,
+      dob: btoa(data.dob)  || null,
+      bio: btoa(data.bio)  || null
     }
     this.api.createProducer(producer).subscribe(data=>{
       this.location.back();
+    }, (error)=>{
+      alert(error.error)
     })
   }
   cancel(){

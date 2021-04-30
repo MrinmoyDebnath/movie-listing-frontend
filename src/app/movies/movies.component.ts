@@ -25,16 +25,22 @@ export class MoviesComponent implements OnInit {
         this.api.getMoviesOfActor(name, 1, 10).subscribe(data=>{
           const result:any = data;
           this.movies = result.results;
+        }, (error)=>{
+          alert(error.error)
         })
       }else if(type==='producer'){
         this.api.getMoviesOfProducer(name, 1, 10).subscribe(data=>{
           const result:any = data;
           this.movies = result.results;
+        }, (error)=>{
+          alert(error.error)
         })
       }else{
         this.api.getMovieByName(type).subscribe(data=>{
           const result:any = data;
           this.movies = result.results;
+        }, (error)=>{
+          alert(error.error)
         })
       }
     }
@@ -42,7 +48,9 @@ export class MoviesComponent implements OnInit {
       this.api.getMovies(1,10).subscribe(data=>{
         const result:any = data;
         this.movies = result.results;
-      })
+      }, (error)=>{
+          alert(error.error)
+        })
     }
   }
   createMovie(){
