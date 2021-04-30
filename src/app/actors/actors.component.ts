@@ -17,12 +17,16 @@ export class ActorsComponent implements OnInit {
       this.api.getActorByName(name).subscribe(data=>{
         const result: any = data;
         this.actors = result.results;
+      }, (error)=>{
+        alert(error.error)
       })
     }
     else{
       this.api.getActors(1,10).subscribe(data=>{
         const result: any = data;
         this.actors = result.results;
+      }, (error)=>{
+        alert(error.error)
       })
     }
    }
