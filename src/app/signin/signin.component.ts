@@ -17,26 +17,30 @@ export class SigninComponent implements OnInit {
   createAccount(data: any){
     
     const user = {
-      username: data.name  || null,
-      email: data.email || null,
-      password: data.password  || null
+      username: btoa(data.name)  || null,
+      email: btoa(data.email) || null,
+      password: btoa(data.password)  || null
     }
     this.api.createAccount(user).subscribe(data=>{
       console.log(data)
+    }, (error)=>{
+      alert(error.error)
     })
   }
-  saveToken(token: string){
-    localStorage.setItem('token', token);
-  }
+  
   login(data: any){
     const user = {
-      username: data.name  || null,
-      password: data.password || null
+      username: btoa(data.name)  || null,
+      password: btoa(data.password) || null
     }
     this.api.loginAccount(user).subscribe(data=>{
       const response: any = data;
-      this.saveToken(response.token)
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('refreshToken', response.refreshToken)
       this.location.back();
+    }, (error)=>{
+      alert(error.error)
     })
   }
   cancel(){
