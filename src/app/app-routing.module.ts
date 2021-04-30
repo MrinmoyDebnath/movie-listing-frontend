@@ -9,6 +9,7 @@ import { NewActorComponent } from './new-actor/new-actor.component';
 import { NewMovieComponent } from './new-movie/new-movie.component';
 import { NewProducerComponent } from './new-producer/new-producer.component';
 import { SigninComponent } from './signin/signin.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'new-producer',
     component: NewProducerComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
